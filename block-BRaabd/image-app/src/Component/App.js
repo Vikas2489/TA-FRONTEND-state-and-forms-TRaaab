@@ -10,31 +10,31 @@ class App extends React.Component {
       imgSrc: 'basketball.jpg',
     };
   }
-  handleClick(state, event) {
-    let imgName = event.target.innerText;
-    // event.target.classList.add(['bg-sky-500/75']);
-    if (imgName == 'pubg') {
-      this.setState({
-        imgSrc: imgName + '.jpeg',
-      });
-    } else {
-      this.setState({
-        imgSrc: imgName + '.jpg',
-      });
-    }
-  }
 
   render() {
     return (
       <>
-        <div className="flex justify-around py-5">
+        <div className="flex">
           {buttonArray.map((button, i) => {
             return (
               <button
                 key={i}
-                className="block py-2 px-3 bg-black text-white rounded"
+                className={
+                  this.state.imgSrc.split('.')[0] === button ? 'bg-color' : ''
+                }
                 type="button"
-                onClick={(event) => this.handleClick(this.state, event)}
+                onClick={(event) => {
+                  let imgName = event.target.innerText;
+                  if (imgName == 'pubg') {
+                    this.setState({
+                      imgSrc: imgName + '.jpeg',
+                    });
+                  } else {
+                    this.setState({
+                      imgSrc: imgName + '.jpg',
+                    });
+                  }
+                }}
               >
                 {button}
               </button>
@@ -42,7 +42,7 @@ class App extends React.Component {
           })}
         </div>
         <img
-          src={'assets/' + this.state.imgSrc}
+          src={'./assets/' + this.state.imgSrc}
           alt={this.state.imgSrc.split('.')[0]}
         />
       </>
