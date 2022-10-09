@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class App extends React.Component {
       max: '',
     };
   }
-  handleIncrement = () => {
+  handleIncreament = () => {
     if (this.state.max) {
       if (this.state.step === 0) {
         this.setState({
@@ -39,34 +40,15 @@ class App extends React.Component {
       }
     }
   };
-  handleDecrement = () => {
-    if (this.state.max) {
-      if (this.state.step === 0) {
-        this.setState({
-          counter: this.state.counter - 1,
-        });
-      } else {
-        let result = this.state.counter - this.state.step;
-        if (result < this.state.max) {
-          return alert(
-            'You cannot decreament now anymore because then max value would be exceded by you'
-          );
-        } else {
-          this.setState({
-            counter: this.state.counter - this.state.step,
-          });
-        }
-      }
+  handleDecreament = () => {
+    if (this.state.step === 0) {
+      this.setState({
+        counter: this.state.counter - 1,
+      });
     } else {
-      if (this.state.step === 0) {
-        this.setState({
-          counter: this.state.counter - 1,
-        });
-      } else {
-        this.setState({
-          counter: this.state.counter - this.state.step,
-        });
-      }
+      this.setState({
+        counter: this.state.counter - this.state.step,
+      });
     }
   };
   handleReset = () => {
@@ -97,56 +79,42 @@ class App extends React.Component {
         <hr />
         <h2>Steps</h2>
         <div className="flex">
-          <p
-            className={this.state.step === 5 ? 'selected' : ''}
-            onClick={this.selectSteps}
-          >
-            5
-          </p>
-          <p
-            className={this.state.step === 10 ? 'selected' : ''}
-            onClick={this.selectSteps}
-          >
-            10
-          </p>
-          <p
-            className={this.state.step === 15 ? 'selected' : ''}
-            onClick={this.selectSteps}
-          >
-            15
-          </p>
+          {[5, 10, 15].map((step) => {
+            return (
+              <Button
+                key={step}
+                className={this.state.step === step ? 'selected' : ''}
+                onClick={this.selectSteps}
+                button={step}
+              />
+            );
+          })}
         </div>
         <h2>Max</h2>
         <div className="flex">
-          <p
-            className={this.state.max === 15 ? 'selected' : ''}
-            onClick={this.selectMax}
-          >
-            15
-          </p>
-          <p
-            className={this.state.max === 100 ? 'selected' : ''}
-            onClick={this.selectMax}
-          >
-            100
-          </p>
-          <p
-            className={this.state.max === 200 ? 'selected' : ''}
-            onClick={this.selectMax}
-          >
-            200
-          </p>
+          {[15, 100, 200].map((max) => {
+            return (
+              <Button
+                key={max}
+                className={this.state.max === max ? 'selected' : ''}
+                onClick={this.selectMax}
+                button={max}
+              />
+            );
+          })}
         </div>
         <div>
-          <button onClick={this.handleIncrement} type="button">
-            increament
-          </button>
-          <button onClick={this.handleDecrement} type="button">
-            decreament
-          </button>
-          <button onClick={this.handleReset} type="button">
-            reset
-          </button>
+          <Button
+            key={'Increament'}
+            onClick={this.handleIncreament}
+            button={'Increament'}
+          />
+          <Button
+            key={'Decreament'}
+            onClick={this.handleDecreament}
+            button={'Decreament'}
+          />
+          <Button key={'Reset'} onClick={this.handleReset} button={'Reset'} />
         </div>
       </>
     );
