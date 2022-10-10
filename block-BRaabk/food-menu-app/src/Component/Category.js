@@ -33,17 +33,21 @@ class Category extends React.Component {
             );
           })}
         </ul>
-        <div className="flex justify-between flex-wrap">
+        <div className="flex flex-wrap justify-evenly">
           {this.state.data.map((food, i) => {
             return (
-              <div key={food.id} className="flex basis-48">
-                <figure className="basis-48">
+              <div
+                key={food.id}
+                className="flex justify-around bg-black text-white basis-2/5 my-5 px-3 py-5"
+              >
+                <figure className="basis-32">
                   <img src={food.img} alt={i} />
                 </figure>
                 <div className="basis-48">
-                  <h2>
+                  <h2 className="mb-2 flex justify-between">
                     {food.title}
                     <span>{food.price}</span>
+                    <hr />
                   </h2>
                   <p>{food.desc}</p>
                 </div>
