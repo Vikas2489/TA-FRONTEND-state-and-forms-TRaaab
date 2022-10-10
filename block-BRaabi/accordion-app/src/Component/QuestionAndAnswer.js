@@ -11,8 +11,8 @@ class QuestionAndAnswer extends React.Component {
   }
   showAnswer(question, answer) {
     this.setState({
-      activeQuestion: question,
-      activeAnswer: answer,
+      activeQuestion: this.state.activeQuestion === question ? '' : question,
+      activeAnswer: this.state.activeAnswer === answer ? '' : answer,
     });
   }
   render() {
