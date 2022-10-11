@@ -36,14 +36,22 @@ class ListOfMovies extends React.Component {
     let index = this.state.activeIndex;
     let activeMovie = movies[index];
     return (
-      <div className="text-white">
-        <div>
-          <p>Director : {activeMovie.Director}</p>
-          <p>Writer : {activeMovie.Writer}</p>
-          <p>imdbRating : {activeMovie.imdbRating}</p>
-          <p>Runtime : {activeMovie.Runtime}</p>
+      <div className="text-white flex justify-between container p-4 w-4/5 m-auto">
+        <div className="basis-3/4">
+          <p className="my-4 text-slate-300 text-xl">
+            Director : {activeMovie.Director}
+          </p>
+          <p className="my-4 text-slate-300 text-xl">
+            Writer : {activeMovie.Writer}
+          </p>
+          <p className="my-4 text-slate-300 text-xl">
+            imdbRating : {activeMovie.imdbRating}
+          </p>
+          <p className="my-4 text-slate-300 text-xl">
+            Runtime : {activeMovie.Runtime}
+          </p>
         </div>
-        <span
+        <button
           onClick={() => {
             this.setState({
               moreInfoIsClickedOrNot: false,
@@ -51,10 +59,11 @@ class ListOfMovies extends React.Component {
               isMouseOverAnyMovie: this.state.isMouseOverAnyMovie,
             });
           }}
-          className="text-white cursor-pointer hover:border-1 hover:border-slate-400 hover:border-solid"
+          style={{ background: '#f6c932' }}
+          className="font-bold hover:text-yellow-100 h-6 rounded-lg  px-2 py-5 flex justify-center items-center leading-6 cursor-pointer text-black"
         >
           Close
-        </span>
+        </button>
       </div>
     );
   };
@@ -65,7 +74,7 @@ class ListOfMovies extends React.Component {
     ) : (
       <div className="container p-4 w-4/5 m-auto">
         <h1
-          className="font-bold text-2xl leading-8 my-7 text-center rounded-lg py-1"
+          className="font-bold text-2xl  my-7 text-center rounded-lg py-1"
           style={{ background: '#F6C932' }}
         >
           IMDb "Top Movies" (Sorted by Number of Votes Ascending)
