@@ -37,7 +37,7 @@ class App extends React.Component {
         <div className="my-9 flex justify-center items-center">
           <input
             type="text"
-            className="border-2 rounded-xl divide-inherit"
+            className="border-2 rounded-xl divide-inherit px-3 py-2"
             onChange={this.handleChange}
           />
           <span className="mx-6">Text size:- {this.state.font_size}</span>
