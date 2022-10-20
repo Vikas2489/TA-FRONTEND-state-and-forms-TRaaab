@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    background-color: #eaecec;
+    position: relative;
+}
+
+.hover_over_size:hover {
+    border: 1px solid black;
+    transition: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+
+/* body {
+    padding-bottom: 500px;
+} */
+
+.btn:hover {
+    background-color: #ebc12f;
+}
+
+.yellow_line {
+    background-color: #ebc12f;
+    width: 28px;
+    height: 3px;
+}
+
+.line_container {
+    display: flex;
+    justify-content: center;
+}
+
+.text_color {
+    color: #5a5b5e;
+}
+
+.border-top {
+    border-top: 1px solid black;
+}
