@@ -12,8 +12,15 @@ export default class App extends React.Component {
       selectedSize: [],
       cart: [],
       clickedOnCart: false,
+      selected: 'highestToLowest',
     };
   }
+  changeHighestToLowest = (e) => {
+    console.log(e.target);
+    this.setState({
+      selected: e.target.value,
+    });
+  };
   handleClickOnAddToCart = (index) => {
     let product = allProductsObj.products[index];
     this.setState((prevState) => {
@@ -117,6 +124,14 @@ export default class App extends React.Component {
       cart: this.state.cart.filter((p) => p.title !== product.title),
     });
   };
+  showTotal = () => {
+    let total = 0;
+    this.state.cart.forEach((cv) => {
+      total = cv.price * cv.quantity + total;
+    });
+    return alert(`Your total amount is ${total}`);
+  };
+
   render() {
     return (
       <>
@@ -127,6 +142,7 @@ export default class App extends React.Component {
           handleClickOnCart={this.handleClickOnCart}
           addQuantity={this.addQuantity}
           reduceQuantity={this.reduceQuantity}
+          showTotal={this.showTotal}
         />
         <div className="flex m-auto container w-[1000px]">
           <Sizes
@@ -138,6 +154,7 @@ export default class App extends React.Component {
             handleClickOnAddToCart={this.handleClickOnAddToCart}
             handleMouseEnter={this.handleMouseEnter}
             handleMouseLeave={this.handleMouseLeave}
+            changeHighestToLowest={this.changeHighestToLowest}
           />
         </div>
       </>

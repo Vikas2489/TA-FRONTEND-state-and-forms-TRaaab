@@ -22,6 +22,7 @@ export default class Header extends React.Component {
           handleClickOnCross={this.props.handleClickOnCross}
           addQuantity={this.props.addQuantity}
           reduceQuantity={this.props.reduceQuantity}
+          showTotal={this.props.showTotal}
         />
       </header>
     );
