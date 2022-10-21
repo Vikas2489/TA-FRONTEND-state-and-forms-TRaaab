@@ -132,9 +132,7 @@ export default class Cart extends React.Component {
                 >
                   $
                   {this.props.state.cart.reduce((acc, cv) => {
-                    cv.quantity == 1
-                      ? (acc = acc + cv.price)
-                      : (acc = acc + cv.price * cv.quantity);
+                    acc = acc + cv.price * cv.quantity;
                     return acc;
                   }, 0)}
                 </span>
@@ -144,14 +142,7 @@ export default class Cart extends React.Component {
                   className="text-center py-3 w-full rounded text-l font-thin block hover:bg-black text-white"
                   style={{ background: '#0D0A10' }}
                   type="button"
-                  onClick={() =>
-                    this.props.state.cart.reduce((acc, cv) => {
-                      cv.quantity == 1
-                        ? (acc = acc + cv.price)
-                        : (acc = acc + cv.price * cv.quantity);
-                      return alert('Your Subtotal is ' + acc);
-                    }, 0)
-                  }
+                  onClick={this.props.showTotal}
                 >
                   Checkout
                 </button>
