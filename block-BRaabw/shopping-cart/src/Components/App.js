@@ -15,6 +15,24 @@ export default class App extends React.Component {
       selected: 'highestToLowest',
     };
   }
+
+  handleUpdateLocalStorage = () => {
+    localStorage.setItem('cart', JSON.stringify(this.state.cart));
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener('boforeUnload', this.handleUpdateLocalStorage);
+  };
+
+  componentDidMount = () => {
+    if (localStorage.cart) {
+      this.setState({
+        cart: JSON.parse(localStorage.cart) || [],
+      });
+    }
+    window.addEventListener('beforeunload', this.handleUpdateLocalStorage);
+  };
+
   changeHighestToLowest = (e) => {
     console.log(e.target);
     this.setState({
